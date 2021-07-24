@@ -12,6 +12,9 @@ from detectron2.utils.logger import setup_logger
 
 from predictor import VisualizationDemo
 from adet.config import get_cfg
+import sys
+sys.path.append("./")
+from util.decode_encode import decode_recs
 
 # constants
 WINDOW_NAME = "COCO detections"
@@ -64,6 +67,24 @@ def get_parser():
     return parser
 
 
+def save_result(file_p, beziers, recs, scores):
+    print("File path: ", file_p)
+    f = open(file_p, 'w')
+    for bezier, rec, score in zip(beziers, recs, scores):
+        # print('bezier: ', bezier)
+        # print('rec ss: ', rec)
+        rec_text = decode_recs(rec)
+        # print('rec text ss:', rec_text )
+        # print('score: ', score)
+        bbox_4p = '{},{},{},{},{},{},{},{},'.format(str(bezier[0]), str(bezier[1]), str(bezier[6]), str(bezier[7]),
+        str(bezier[8]), str(bezier[9]),str(bezier[14]), str(bezier[15]) )
+        # print("bbox: ", bbox_4p) 
+        content = bbox_4p + str(score) + ',' + rec_text + '\n'
+        print('content: ', content)
+        f.write(content)
+    f.close()
+
+
 if __name__ == "__main__":
     mp.set_start_method("spawn", force=True)
     args = get_parser().parse_args()
@@ -91,14 +112,22 @@ if __name__ == "__main__":
                 )
             )
 
+            beziers = predictions["instances"].to('cpu').beziers.tolist()
+            scores = predictions["instances"].to('cpu').scores.tolist()
+            recs = predictions["instances"].to('cpu').recs
+            
             if args.output:
                 if os.path.isdir(args.output):
                     assert os.path.isdir(args.output), args.output
                     out_filename = os.path.join(args.output, os.path.basename(path))
+                    result_path = out_filename.split(".")[0] + '.txt'
+
                 else:
                     assert len(args.input) == 1, "Please specify a directory with args.output"
                     out_filename = args.output
                 visualized_output.save(out_filename)
+                save_result(result_path, beziers, recs, scores)
+
             else:
                 cv2.imshow(WINDOW_NAME, visualized_output.get_image()[:, :, ::-1])
                 if cv2.waitKey(0) == 27:
@@ -150,3 +179,13 @@ if __name__ == "__main__":
             output_file.release()
         else:
             cv2.destroyAllWindows()
+
+'''
+CUDA_VISIBLE_DEVICES=2 python demo/demo.py \
+    --config-file configs/BAText/CTW1500/attn_R_50.yaml \
+    --input test_image  \
+    --output output_test\
+    --opts MODEL.WEIGHTS models/ctw1500_attn_R_50.pth
+        https://drive.google.com/uc?id=1bC68CzsSVTusZVvOkk7imSZSbgD1MqK2
+
+'''

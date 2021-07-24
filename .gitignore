@@ -7,6 +7,15 @@ inference_test_output
 *.jpg
 *.png
 *.txt
+# models 
+./models/
+
+# datasets 
+./datasets
+# image folder 
+./test_image
+./output_test
+#
 
 # compilation and distribution
 __pycache__

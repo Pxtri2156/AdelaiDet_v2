@@ -6,7 +6,7 @@ MODEL:
   BATEXT:
     RECOGNIZER: "attn" # "attn" "rnn"
 SOLVER:
-  IMS_PER_BATCH: 8
+  IMS_PER_BATCH: 2
   BASE_LR: 0.001
   STEPS: (80000,)
   MAX_ITER: 120000
