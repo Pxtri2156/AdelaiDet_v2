@@ -230,3 +230,13 @@ if __name__ == "__main__":
         dist_url=args.dist_url,
         args=(args,),
     )
+ửe
+'''
+
+CUDA_VISIBLE_DEVICES=3 OMP_NUM_THREADS=1 python tools/train_net.py \\
+        --config-file configs/BAText/CTW1500/attn_R_50.yaml \\
+        --num-gpus 1 --resume \\
+        MODEL.WEIGHTS models/ctw1500/ctw1500_attn_R_50.pth
+
+
+'''
