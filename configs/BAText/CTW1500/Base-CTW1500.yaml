@@ -8,6 +8,8 @@ MODEL:
 DATASETS:
   TRAIN: ("ctw1500_word_train",)
   TEST: ("ctw1500_word_test",)
+  # TRAIN: ("vintext_train",)
+  # TEST: ("vintext_test",)
 INPUT:
   MIN_SIZE_TEST: 800
   MAX_SIZE_TEST: 1024

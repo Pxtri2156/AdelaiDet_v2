@@ -230,13 +230,27 @@ if __name__ == "__main__":
         dist_url=args.dist_url,
         args=(args,),
     )
-ửe
+
 '''
 
-CUDA_VISIBLE_DEVICES=3 OMP_NUM_THREADS=1 python tools/train_net.py \\
-        --config-file configs/BAText/CTW1500/attn_R_50.yaml \\
-        --num-gpus 1 --resume \\
+CUDA_VISIBLE_DEVICES=3 OMP_NUM_THREADS=1 python tools/train_net.py \
+        --config-file configs/BAText/CTW1500/attn_R_50.yaml \
+        --num-gpus 1 --resume \
         MODEL.WEIGHTS models/ctw1500/ctw1500_attn_R_50.pth
+
+Finetuning on CTW1500: 
+
+CUDA_VISIBLE_DEVICES=3 OMP_NUM_THREADS=1 python tools/train_net.py \
+    --config-file configs/BAText/CTW1500/attn_R_50.yaml \
+    --num-gpus 1 --resume \
+    MODEL.WEIGHTS models/ctw1500_attn_R_50.pth
+
+
+CUDA_VISIBLE_DEVICES=3 OMP_NUM_THREADS=1 python tools/train_net.py \
+    --config-file configs/BAText/TotalText/attn_R_50.yaml \
+    --num-gpus 1 \
+    MODEL.WEIGHTS models/total_text/tt_attn_R_50.pth
+
 
 
 '''

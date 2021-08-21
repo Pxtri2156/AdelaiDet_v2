@@ -14,7 +14,7 @@ from predictor import VisualizationDemo
 from adet.config import get_cfg
 import sys
 sys.path.append("./")
-from util.decode_encode import decode_recs
+from util.decode_encode import decode
 
 # constants
 WINDOW_NAME = "COCO detections"
@@ -73,7 +73,7 @@ def save_result(file_p, beziers, recs, scores):
     for bezier, rec, score in zip(beziers, recs, scores):
         # print('bezier: ', bezier)
         # print('rec ss: ', rec)
-        rec_text = decode_recs(rec)
+        rec_text = decode(rec)
         # print('rec text ss:', rec_text )
         # print('score: ', score)
         bbox_4p = '{},{},{},{},{},{},{},{},'.format(str(bezier[0]), str(bezier[1]), str(bezier[6]), str(bezier[7]),
@@ -184,8 +184,8 @@ if __name__ == "__main__":
 CUDA_VISIBLE_DEVICES=2 python demo/demo.py \
     --config-file configs/BAText/CTW1500/attn_R_50.yaml \
     --input test_image  \
-    --output output_test\
-    --opts MODEL.WEIGHTS models/ctw1500_attn_R_50.pth
+    --output output_test \
+    --opts MODEL.WEIGHTS models/ctw1500/ctw1500_attn_R_50.pth
         https://drive.google.com/uc?id=1bC68CzsSVTusZVvOkk7imSZSbgD1MqK2
 
 '''
