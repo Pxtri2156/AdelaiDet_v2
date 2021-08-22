@@ -5,7 +5,6 @@ from collections import namedtuple
 from adet.evaluation import rrc_evaluation_funcs
 import importlib
 import sys
-
 import math 
 
 from rapidfuzz import string_metric
@@ -48,6 +47,8 @@ def validate_data(gtFilePath, submFilePath, evaluationParams):
     gt = rrc_evaluation_funcs.load_zip_file(gtFilePath, evaluationParams['GT_SAMPLE_NAME_2_ID'])
     
     subm = rrc_evaluation_funcs.load_zip_file(submFilePath, evaluationParams['DET_SAMPLE_NAME_2_ID'], True)
+    print('gt path: ', gtFilePath)
+    print("submFilePath:", submFilePath)
 
     #Validate format of GroundTruth
     for k in gt:

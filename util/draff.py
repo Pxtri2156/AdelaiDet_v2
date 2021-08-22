@@ -3,7 +3,7 @@ import json
 import cv2 
 import numpy as np
 
-path = "/mlcv/WorkingSpace/SceneText/tripx/AdelaiDet/datasets/VinTextCustom/test_data.json"
+path = "/mlcv/WorkingSpace/SceneText/tripx/AdelaiDet/datasets/VinTextCustom/val.json"
 img_path = "/mlcv/WorkingSpace/SceneText/tripx/AdelaiDet/datasets/VinTextCustom/test_image/im1501.jpg" 
 img = cv2.imread(img_path)
 
@@ -16,11 +16,12 @@ CTLABELS = ['^', '\\', '}', 'ỵ', '>', '<', '{', '~', '`', '°', '$', 'ẽ', '�
 
 # print("dictionary: ", len(dictionary))
 print("keys: ", data.keys())
+print('number images: ', len(data['images']))
 example_data =  data['annotations'][0]
 example_rec = data['annotations'][0]["rec"]
-print("example annotation: ", example_rec )
-print('len CTLbales: ', len(CTLABELS))
-print('recs: ', CTLABELS[206] + CTLABELS[222] + CTLABELS[205] + CTLABELS[224])
+# print("example annotation: ", example_rec )
+# print('len CTLbales: ', len(CTLABELS))
+# print('recs: ', CTLABELS[206] + CTLABELS[222] + CTLABELS[205] + CTLABELS[224])
 
 example_bezier = example_data["bezier_pts"]
 pts = []
@@ -30,7 +31,7 @@ cv2.polylines(img,[pts],True,(0,255,255))
 save_path = "./test_img.jpg"
 cv2.imwrite(save_path,img)
 
-CTLABELS = [' ','!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','[','\\',']','^','_','`','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','{','|','}','~']
-print(len(CTLABELS))
-print(CTLABELS[94])
+# CTLABELS = [' ','!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','[','\\',']','^','_','`','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','{','|','}','~']
+# print(len(CTLABELS))
+# print(CTLABELS[94])
 

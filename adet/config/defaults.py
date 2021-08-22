@@ -94,8 +94,8 @@ _C.MODEL.DLA.NORM = "FrozenBN"
 # BAText Options
 # ---------------------------------------------------------------------------- #
 _C.MODEL.BATEXT = CN()
-# _C.MODEL.BATEXT.VOC_SIZE = 227 + 1 
-_C.MODEL.BATEXT.VOC_SIZE = 94 + 1
+_C.MODEL.BATEXT.VOC_SIZE = 227 + 1 
+# _C.MODEL.BATEXT.VOC_SIZE = 95 + 1
 _C.MODEL.BATEXT.NUM_CHARS = 25
 _C.MODEL.BATEXT.POOLER_RESOLUTION = (8, 32)
 _C.MODEL.BATEXT.IN_FEATURES = ["p2", "p3", "p4"]

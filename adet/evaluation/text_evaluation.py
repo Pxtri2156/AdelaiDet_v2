@@ -51,12 +51,16 @@ class TextEvaluator(DatasetEvaluator):
             self._coco_api = COCO(json_file)
 
         # use dataset_name to decide eval_gt_path
+        # print("dataset_name: ", dataset_name)
         if "totaltext" in dataset_name:
             self._text_eval_gt_path = "datasets/evaluation/gt_totaltext.zip"
             self._word_spotting = True
         elif "ctw1500" in dataset_name:
             self._text_eval_gt_path = "datasets/evaluation/gt_ctw1500.zip"
             self._word_spotting = False
+        elif "vintext" in dataset_name:
+            self._text_eval_gt_path = "datasets/evaluation/gt_vintext.zip"
+            self._word_spotting = True 
         self._text_eval_confidence = cfg.MODEL.FCOS.INFERENCE_TH_TEST
 
     def reset(self):

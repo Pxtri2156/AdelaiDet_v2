@@ -24,7 +24,8 @@ _PREDEFINED_SPLITS_TEXT = {
     "syntext1_train": ("syntext1/images", "syntext1/annotations/train.json"),
     "syntext2_train": ("syntext2/images", "syntext2/annotations/train.json"),
     "vintext_train": ("VinTextCustom/train_images", "VinTextCustom/train_data.json"),
-    "vintext_test": ("VinTextCustom/test_image", "VinTextCustom/test_data.json"),
+    # "vintext_val": ("VinTextCustom/val_image", "VinTextCustom/val.json"),
+    "vintext_val": ("VinTextCustom/val_image_rename", "VinTextCustom/val_rename.json"),
     "mltbezier_word_train": ("mlt2017/images","mlt2017/annotations/train.json"),
 
 }
