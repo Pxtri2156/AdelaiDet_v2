@@ -6,10 +6,10 @@ MODEL:
   BATEXT:
     RECOGNIZER: "attn" # "attn" "rnn"
 SOLVER:
-  IMS_PER_BATCH: 8
+  IMS_PER_BATCH: 2
   BASE_LR: 0.001
   MAX_ITER: 5000
   CHECKPOINT_PERIOD: 1000
 TEST:
   EVAL_PERIOD: 1000
-OUTPUT_DIR: "output/batext/totaltext/attn_R_50"
+OUTPUT_DIR: "models/total_text/"

@@ -22,6 +22,10 @@ from shapely.geometry import Polygon, LinearRing
 from adet.evaluation import text_eval_script
 import zipfile
 
+import sys
+sys.path.append('./')
+from util.decode_encode import decode, ctc_decode
+
 
 class TextEvaluator(DatasetEvaluator):
     """
@@ -47,12 +51,16 @@ class TextEvaluator(DatasetEvaluator):
             self._coco_api = COCO(json_file)
 
         # use dataset_name to decide eval_gt_path
+        # print("dataset_name: ", dataset_name)
         if "totaltext" in dataset_name:
             self._text_eval_gt_path = "datasets/evaluation/gt_totaltext.zip"
             self._word_spotting = True
         elif "ctw1500" in dataset_name:
             self._text_eval_gt_path = "datasets/evaluation/gt_ctw1500.zip"
             self._word_spotting = False
+        elif "vintext" in dataset_name:
+            self._text_eval_gt_path = "datasets/evaluation/gt_vintext.zip"
+            self._word_spotting = True 
         self._text_eval_confidence = cfg.MODEL.FCOS.INFERENCE_TH_TEST
 
     def reset(self):
@@ -258,34 +266,34 @@ def bezier_to_polygon(bezier):
     return points.tolist()
 
 
-CTLABELS = [' ','!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','[','\\',']','^','_','`','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','{','|','}','~']
+# CTLABELS = [' ','!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','[','\\',']','^','_','`','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','{','|','}','~']
 
 
-def ctc_decode(rec):
-    # ctc decoding
-    last_char = False
-    s = ''
-    for c in rec:
-        c = int(c)
-        if c < 95:
-            if last_char != c:
-                s += CTLABELS[c]
-                last_char = c
-        elif c == 95:
-            s += u'口'
-        else:
-            last_char = False
-    return s
+# def ctc_decode(rec):
+#     # ctc decoding
+#     last_char = False
+#     s = ''
+#     for c in rec:
+#         c = int(c)
+#         if c < 95:
+#             if last_char != c:
+#                 s += CTLABELS[c]
+#                 last_char = c
+#         elif c == 95:
+#             s += u'口'
+#         else:
+#             last_char = False
+#     return s
 
 
-def decode(rec):
-    s = ''
-    for c in rec:
-        c = int(c)
-        if c < 95:
-            s += CTLABELS[c]
-        elif c == 95:
-            s += u'口'
+# def decode(rec):
+#     s = ''
+#     for c in rec:
+#         c = int(c)
+#         if c < 95:
+#             s += CTLABELS[c]
+#         elif c == 95:
+#             s += u'口'
 
-    return s
+#     return s
             
