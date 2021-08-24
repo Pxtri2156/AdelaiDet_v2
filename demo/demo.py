@@ -190,10 +190,24 @@ CUDA_VISIBLE_DEVICES=2 python demo/demo.py \
 
 vinText
 
-CUDA_VISIBLE_DEVICES=3 python demo/demo.py \
+CUDA_VISIBLE_DEVICES=6 python demo/demo.py \
     --config-file configs/BAText/VinText/attn_R_50.yaml\
     --input datasets/VinTextCustom/val_image  \
     --output output/batext/vintext \
-    --opts MODEL.WEIGHTS models/vintext_finetune_ctw1500_v2/model_0109999.pth
+    --opts MODEL.WEIGHTS models/vintext_finetune_ctw1500_v2/model_final.pth
+
+
+CUDA_VISIBLE_DEVICES=6 python demo/demo.py \
+    --config-file configs/BAText/VinText/attn_R_50.yaml\
+    --input datasets/VinTextCustom/train_images  \
+    --output output/batext/vintext \
+    --opts MODEL.WEIGHTS models/vintext_finetune_ctw1500_v2/model_final.pth
+
+
+CUDA_VISIBLE_DEVICES=6 python demo/demo.py \
+    --config-file configs/BAText/VinText/attn_R_50.yaml\
+    --input datasets/VinTextCustom/test_image  \
+    --output output/batext/vintext \
+    --opts MODEL.WEIGHTS models/vintext_finetune_ctw1500_v2/model_final.pth
 
 '''
