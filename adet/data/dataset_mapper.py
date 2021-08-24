@@ -63,6 +63,7 @@ class DatasetMapperWithBasis(DatasetMapper):
         )
         self.augmentation = build_augmentation(cfg, is_train)
 
+        # cfg.INPUT.CROP.ENABLED = False
         if cfg.INPUT.CROP.ENABLED and is_train:
             self.augmentation.insert(
                 0,

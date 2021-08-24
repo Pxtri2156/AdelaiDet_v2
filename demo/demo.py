@@ -14,7 +14,7 @@ from predictor import VisualizationDemo
 from adet.config import get_cfg
 import sys
 sys.path.append("./")
-from util.decode_encode import decode
+from util.decode_vietnamese import decode_recognition
 
 # constants
 WINDOW_NAME = "COCO detections"
@@ -73,7 +73,7 @@ def save_result(file_p, beziers, recs, scores):
     for bezier, rec, score in zip(beziers, recs, scores):
         # print('bezier: ', bezier)
         # print('rec ss: ', rec)
-        rec_text = decode(rec)
+        rec_text = decode_recognition(rec)
         # print('rec text ss:', rec_text )
         # print('score: ', score)
         bbox_4p = '{},{},{},{},{},{},{},{},'.format(str(bezier[0]), str(bezier[1]), str(bezier[6]), str(bezier[7]),
@@ -187,5 +187,13 @@ CUDA_VISIBLE_DEVICES=2 python demo/demo.py \
     --output output_test \
     --opts MODEL.WEIGHTS models/ctw1500/ctw1500_attn_R_50.pth
         https://drive.google.com/uc?id=1bC68CzsSVTusZVvOkk7imSZSbgD1MqK2
+
+vinText
+
+CUDA_VISIBLE_DEVICES=3 python demo/demo.py \
+    --config-file configs/BAText/VinText/attn_R_50.yaml\
+    --input datasets/VinTextCustom/val_image  \
+    --output output/batext/vintext \
+    --opts MODEL.WEIGHTS models/vintext_finetune_ctw1500_v2/model_0109999.pth
 
 '''
