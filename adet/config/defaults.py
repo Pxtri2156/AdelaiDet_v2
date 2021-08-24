@@ -9,7 +9,10 @@ _C.MODEL.MOBILENET = False
 _C.MODEL.BACKBONE.ANTI_ALIAS = False
 _C.MODEL.RESNETS.DEFORM_INTERVAL = 1
 _C.INPUT.HFLIP_TRAIN = True
+# _C.INPUT.CROP.CROP_INSTANCE = True
+# _C.INPUT.CROP.ENABLED = True
 _C.INPUT.CROP.CROP_INSTANCE = True
+# _C.INPUT.CROP.ENABLED = False
 
 # ---------------------------------------------------------------------------- #
 # FCOS Head
@@ -94,7 +97,8 @@ _C.MODEL.DLA.NORM = "FrozenBN"
 # BAText Options
 # ---------------------------------------------------------------------------- #
 _C.MODEL.BATEXT = CN()
-_C.MODEL.BATEXT.VOC_SIZE = 227 + 1 
+# _C.MODEL.BATEXT.VOC_SIZE = 227 + 1 
+_C.MODEL.BATEXT.VOC_SIZE = 105
 # _C.MODEL.BATEXT.VOC_SIZE = 95 + 1
 _C.MODEL.BATEXT.NUM_CHARS = 25
 _C.MODEL.BATEXT.POOLER_RESOLUTION = (8, 32)

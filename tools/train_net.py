@@ -240,7 +240,7 @@ CUDA_VISIBLE_DEVICES=3 OMP_NUM_THREADS=1 python tools/train_net.py \
 
 Finetuning CTW1500 with VinText: 
 
-CUDA_VISIBLE_DEVICES=3 OMP_NUM_THREADS=1 python tools/train_net.py \
+OMP_NUM_THREADS=1  CUDA_VISIBLE_DEVICES=3 python tools/train_net.py \
     --config-file configs/BAText/VinText/attn_R_50.yaml\
     --num-gpus 1 --resume \
     MODEL.WEIGHTS models/vintext_finetune_ctw1500/ctw1500_attn_R_50.pth

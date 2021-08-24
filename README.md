@@ -1,7 +1,8 @@
 <div align="center">
     <img src="docs/adel-logo.svg" width="160" >
 </div>
-
+# Note
+This repo train ABCnetv1 with VietNamese dataset. This is not a ABCnetv2 of author's ABCnet. 
 #  AdelaiDet
 
 AdelaiDet is an open source toolbox for multiple instance-level recognition tasks on top of [Detectron2](https://github.com/facebookresearch/detectron2).
